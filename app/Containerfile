@@ -1,0 +1,27 @@
+# 1. Vilken basimage bygger vi på?
+FROM registry.access.redhat.com/ubi9/python-312
+
+# 2. Var ska filerna ligga i imagen?
+WORKDIR /opt/app-root/src
+
+# 3. Kopiera in listan över bibliotek
+COPY requirements.txt ./
+
+# 4. Installera biblioteken (körs i imagen när den byggs)
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+# 5. Kopiera in appen och startskriptet
+COPY --chown=1001:0 app.py start.sh ./
+
+# 6. Ge start.sh rätt att köras
+RUN chmod 0755 start.sh
+
+# 7. Kör inte som root
+USER 1001
+
+# 8. Vilken port lyssnar appen på?
+EXPOSE 8080
+
+# 9. Vad ska köras när containern startar?
+CMD ["./start.sh"]
