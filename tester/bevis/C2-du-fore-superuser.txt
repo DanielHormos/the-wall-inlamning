@@ -1,0 +1,10 @@
+Krav: C2 (applikationskonto)
+Tid: 2026-11-18 14:13
+Miljö: lokalt, Docker 29.9.3, quay.io/kurs/postgresql:2026-10-29
+Kommando: docker exec -it wall-db psql -U walluser -d walldb -c "\du"
+Uppsättning: POSTGRES_USER=walluser (imagens standardsätt)
+Observation: walluser blir superuser -> appen får full kontroll över databasen
+
+ Role name |                         Attributes
+-----------+------------------------------------------------------------
+ walluser  | Superuser, Create role, Create DB, Replication, Bypass RLS
