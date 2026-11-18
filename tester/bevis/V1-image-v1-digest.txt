@@ -1,0 +1,1 @@
+quay.io/lerniadevopsdanielhormos/the-wall@sha256:7e25a53a4ef88a29dd2e8dab8efb4fd1919e7ec469fedab98bffd437cdfb378f
