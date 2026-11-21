@@ -49,3 +49,30 @@ spec:
                   key: password
           ports:
             - containerPort: 8080
+          # Startup: initialize() kan ta upp till 30 × (3 s + 2 s) = 150 s.
+          # 5 s × 40 = 200 s ger marginal för det och för Gunicorns start.
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 40
+          # Liveness: lever processen? /health frågar inte databasen,
+          # så ett databasfel orsakar ingen onödig omstart.
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          # Readiness: fungerar databasen? GET / läser tabellen messages
+          # och ger 503 vid databasfel, så Poden tas ur trafik.
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 2
