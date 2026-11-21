@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wall-web
+  labels:
+    app.kubernetes.io/name: wall-web
+    app.kubernetes.io/part-of: the-wall
+spec:
+  # replicas utelämnas medvetet: HPA styr antalet (2–3)
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: wall-web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: wall-web
+        app.kubernetes.io/part-of: the-wall
+    spec:
+      containers:
+        - name: web
+          image: quay.io/lerniadevopsdanielhormos/the-wall:1.0.0
+          env:
+            # Inställningar från ConfigMap (inte hemliga)
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: wall-web-config
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: wall-web-config
+                  key: DB_PORT
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: wall-web-config
+                  key: DB_NAME
+            # Inloggning från Secret (appkontot, aldrig admin)
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: wall-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wall-db-credentials
+                  key: password
+          ports:
+            - containerPort: 8080
