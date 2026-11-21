@@ -1,0 +1,22 @@
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/wall-db-f78cb7d95-8l9gc     1/1     Running   0          10m
+pod/wall-web-75ccd7cf84-v2tcv   1/1     Running   0          10m
+pod/wall-web-75ccd7cf84-v94jv   1/1     Running   0          10m
+
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/wall-db    ClusterIP   172.30.218.165   <none>        5432/TCP   10m
+service/wall-web   ClusterIP   172.30.248.175   <none>        80/TCP     10m
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/wall-db    1/1     1            1           10m
+deployment.apps/wall-web   2/2     2            2           10m
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/wall-db-f78cb7d95     1         1         1       10m
+replicaset.apps/wall-web-75ccd7cf84   2         2         2       10m
+
+NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/wall-web   Deployment/wall-web   cpu: 1%/50%   2         3         2          10m
+
+NAME                                HOST/PORT                                                            PATH   SERVICES   PORT   TERMINATION     WILDCARD
+route.route.openshift.io/wall-web   wall-web-student-daniel-hormos-lerniastudent-se.apps.okd.cloud2.se          wall-web   http   edge/Redirect   None
