@@ -10,6 +10,7 @@
 | Route-adress | *(fylls i efter driftsättning)* |
 | Upstream | https://github.com/jonasbjork/the-wall |
 | Upstream-commit | `caa199b60b0218675bc2156f0dff00131d464512` |
+| Route-adress | https://wall-web-student-daniel-hormos-lerniastudent-se.apps.okd.cloud2.se |
 
 ## Images
 
