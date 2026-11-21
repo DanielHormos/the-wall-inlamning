@@ -5,6 +5,8 @@ metadata:
   labels:
     app.kubernetes.io/name: wall-web
     app.kubernetes.io/part-of: the-wall
+  annotations:
+    kubernetes.io/change-cause: "v2.0.0: versionsmarkör i rubriken"
 spec:
   # replicas utelämnas medvetet: HPA styr antalet (2–3)
   selector:
@@ -22,7 +24,7 @@ spec:
           type: RuntimeDefault          # begränsa anrop till Linux-kärnan
       containers:
         - name: web
-          image: quay.io/lerniadevopsdanielhormos/the-wall:1.0.0
+          image: quay.io/lerniadevopsdanielhormos/the-wall:2.0.0
           env:
             # Inställningar från ConfigMap (inte hemliga)
             - name: DB_HOST
