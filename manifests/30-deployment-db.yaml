@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wall-db
+  labels:
+    app.kubernetes.io/name: wall-db
+    app.kubernetes.io/part-of: the-wall
+spec:
+  replicas: 1                     # en instans: PostgreSQL äger sina datafiler ensam
+  strategy:
+    type: Recreate                # stoppa gamla Poden först – RWO-disken får aldrig delas
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: wall-db
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: wall-db
+        app.kubernetes.io/part-of: the-wall
+    spec:
+      containers:
+        - name: postgresql
+          image: quay.io/kurs/postgresql:2026-10-29   # vald tagg, se README
+          env:
+            - name: POSTGRES_PASSWORD       # adminlösenord (superuser postgres)
+              valueFrom:
+                secretKeyRef:
+                  name: wall-db-admin
+                  key: password
+            - name: POSTGRES_DB             # databasen som skapas vid första start
+              value: walldb
+            - name: APP_DB_USER             # läses av init-skriptet
+              valueFrom:
+                secretKeyRef:
+                  name: wall-db-credentials
+                  key: username
+            - name: APP_DB_PASSWORD         # läses av init-skriptet
+              valueFrom:
+                secretKeyRef:
+                  name: wall-db-credentials
+                  key: password
+          ports:
+            - containerPort: 5432
+          volumeMounts:                                  # NYTT
+            - name: data                                 # NYTT: disken...
+              mountPath: /var/lib/postgresql/data        # NYTT: ...monteras här (PGDATA ligger i pgdata/ under)
+            - name: init                                 # NYTT: init-skriptet...
+              mountPath: /docker-entrypoint-initdb.d     # NYTT: ...där imagen letar efter skript
+              readOnly: true                             # NYTT: samma som :ro lokalt
+      volumes:                                           # NYTT
+        - name: data                                     # NYTT
+          persistentVolumeClaim:                         # NYTT
+            claimName: wall-db-data                      # NYTT: din PVC
+        - name: init                                     # NYTT
+          configMap:                                     # NYTT
+            name: wall-db-init                           # NYTT: din ConfigMap med skriptet
