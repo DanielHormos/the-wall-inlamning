@@ -73,7 +73,7 @@ HTML = """
     </style>
 </head>
 <body>
-    <h1>THE WALL_</h1>
+    <h1>THE WALL_ <small>v2</small></h1>
     <p class="subtitle">A distributed message board powered by OKD</p>
 
     <div class="box">
