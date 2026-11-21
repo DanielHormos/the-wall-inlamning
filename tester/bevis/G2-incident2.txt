@@ -1,0 +1,54 @@
+=== G2 FORE 2026-11-21T21:52:27 ===
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-75ccd7cf84-j8h7b   true    0
+wall-web-75ccd7cf84-kzkbr   true    0
+=== G2 FEL INFORS 2026-11-21T21:52:36: DB_NAME -> finnsinte ===
+--- ConfigMap vs körande process ---
+ConfigMap DB_NAME: finnsinte
+pod/wall-web-75ccd7cf84-j8h7b -> process DB_NAME: walldb
+pod/wall-web-75ccd7cf84-kzkbr -> process DB_NAME: walldb
+Route: 200
+=== G2 OMSTART 2026-11-21T21:54:18: oc rollout restart deployment/wall-web ===
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-578c7b9975-ljg62   false   9
+wall-web-75ccd7cf84-j8h7b   true    0
+wall-web-75ccd7cf84-kzkbr   true    0
+--- logg fran foregaende (kraschad) korning ---
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/app-root/src/app.py", line 193, in initialize
+    raise RuntimeError("Database could not be initialized")
+RuntimeError: Database could not be initialized
+
+    Last State:     Terminated
+      Exit Code:    1
+  Warning  Unhealthy       20m (x50 over 25m)    kubelet            spec.containers{web}: Startup probe failed: Get "http://10.131.0.53:8080/health": dial tcp 10.131.0.53:8080: connect: connection refused
+  Normal   Killing         8m55s (x2 over 21m)   kubelet            spec.containers{web}: Container web failed startup probe, will be restarted
+  Warning  BackOff         13s (x30 over 23m)    kubelet            spec.containers{web}: Back-off restarting failed container web in pod wall-web-578c7b9975-ljg62_student-daniel-hormos-lerniastudent-se(22916f1d-0609-49d5-a2be-1fdd5b29aa55)
+
+error: Internal error occurred: unable to upgrade connection: container not found ("web")
+Route: 200
+--- start.sh-rad och felorsak fran kraschad korning ---
+
+start.sh: DB_HOST=wall-db DB_NAME=finnsinte
+Waiting for database (1/30): connection failed: connection to server at "172.30.187.1", port 5432 failed: FATAL:  database "finnsinte" does not exist
+
+=== G2 ATGARD 2026-11-21T22:22:06: oc apply -f manifests/10-configmap-web.yaml + rollout restart ===
+=== G2 VERIFIERING 2026-11-21T22:22:28 ===
+NAME              DATA   AGE    LABELS
+wall-web-config   3      2d5h   app.kubernetes.io/name=wall-web,app.kubernetes.io/part-of=the-wall
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-6dff7f587c-5qpkl   true    0
+wall-web-6dff7f587c-mbz8t   true    0
+pod/wall-web-6dff7f587c-5qpkl -> DB_NAME: walldb
+pod/wall-web-6dff7f587c-mbz8t -> DB_NAME: walldb
+
+HTTP/1.1 302 FOUND
+
+
+        <p>Messages: 7</p>
+            <span class="author">Incident2</span>
+
