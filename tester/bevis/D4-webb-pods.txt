@@ -1,0 +1,22 @@
+=== D4 olika webb-Pods visar samma data 2026-11-21T18:53:39 ===
+
+        <p>Pod: <span class="pod">wall-web-86f6864f4c-jpr4v</span></p>
+        <p>Messages: 4</p>
+        <p>Pod: <span class="pod">wall-web-86f6864f4c-s9gp4</span></p>
+        <p>Messages: 4</p>
+
+=== Efter att en webb-Pod ersatts av en ny 2026-11-21T18:54:03 ===
+
+        <p>Pod: <span class="pod">wall-web-86f6864f4c-jpr4v</span></p>
+        <p>Messages: 4</p>
+        <p>Pod: <span class="pod">wall-web-86f6864f4c-s9gp4</span></p>
+        <p>Messages: 4</p>
+
+OBS: raderingen ovan misslyckades (fel syntax: 'oc delete pod pod/...'), Poderna är oförändrade. Nytt försök nedan.
+=== Efter att en webb-Pod ersatts av en ny 2026-11-21T18:55:17 ===
+
+        <p>Pod: <span class="pod">wall-web-86f6864f4c-7m9hz</span></p>
+        <p>Messages: 4</p>
+        <p>Pod: <span class="pod">wall-web-86f6864f4c-s9gp4</span></p>
+        <p>Messages: 4</p>
+
