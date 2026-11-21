@@ -1,0 +1,77 @@
+=== H2 FORE 2026-11-21T23:13:13 ===
+ antal | senaste_id 
+-------+------------
+     8 |          8
+(1 row)
+
+PVC            UID                                    VOLUME
+wall-db-data   fa406d16-6286-4501-b5e8-6fa4435204e7   pvc-fa406d16-6286-4501-b5e8-6fa4435204e7
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/wall-db    1/1     1            1           8h
+deployment.apps/wall-web   2/2     2            2           6h54m
+
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/wall-db    ClusterIP   172.30.187.1    <none>        5432/TCP   7h9m
+service/wall-web   ClusterIP   172.30.127.66   <none>        80/TCP     6h30m
+
+NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/wall-web   Deployment/wall-web   cpu: 1%/50%   2         3         2          4h44m
+
+NAME                                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/wall-db-data   Bound    pvc-fa406d16-6286-4501-b5e8-6fa4435204e7   1Gi        RWO            gp3-csi        <unset>                 2d5h
+
+NAME                         TYPE     DATA   AGE
+secret/wall-db-admin         Opaque   1      2d6h
+secret/wall-db-credentials   Opaque   2      2d6h
+
+NAME                        DATA   AGE
+configmap/wall-db-init      1      2d4h
+configmap/wall-web-config   3      2d6h
+
+NAME                                HOST/PORT                                                            PATH   SERVICES   PORT   TERMINATION     WILDCARD
+route.route.openshift.io/wall-web   wall-web-student-daniel-hormos-lerniastudent-se.apps.okd.cloud2.se          wall-web   http   edge/Redirect   None
+
+NAME                                                     POD-SELECTOR                     AGE
+networkpolicy.networking.k8s.io/wall-db-allow-from-web   app.kubernetes.io/name=wall-db   4h48m
+=== H2 TAR BORT webb (avslutar skrivningar) 2026-11-21T23:13:36 ===
+=== H2 DB nedskalning 2026-11-21T23:13:56 ===
+=== H2 MELLANLAGE 2026-11-21T23:55:40 ===
+NAME                                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/wall-db-data   Bound    pvc-fa406d16-6286-4501-b5e8-6fa4435204e7   1Gi        RWO            gp3-csi        <unset>                 2d6h
+
+NAME                         TYPE     DATA   AGE
+secret/wall-db-admin         Opaque   1      2d6h
+secret/wall-db-credentials   Opaque   2      2d6h
+=== H2 ATERSKAPAR: oc apply -f manifests/ 2026-11-21T23:55:49 ===
+configmap/wall-web-config unchanged
+configmap/wall-db-init unchanged
+persistentvolumeclaim/wall-db-data unchanged
+deployment.apps/wall-db created
+service/wall-db created
+deployment.apps/wall-web created
+service/wall-web created
+route.route.openshift.io/wall-web unchanged
+networkpolicy.networking.k8s.io/wall-db-allow-from-web unchanged
+horizontalpodautoscaler.autoscaling/wall-web created
+--- DB startlogg ---
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+2026-11-21 22:56:00.735 UTC [11] LOG:  database system was shut down at 2026-11-21 22:14:01 UTC
+2026-11-21 22:56:00.745 UTC [1] LOG:  database system is ready to accept connections
+
+=== H2 VERIFIERING 2026-11-21T23:56:49 ===
+ antal | senaste_id 
+-------+------------
+     8 |          8
+(1 row)
+
+PVC            UID                                    VOLUME
+wall-db-data   fa406d16-6286-4501-b5e8-6fa4435204e7   pvc-fa406d16-6286-4501-b5e8-6fa4435204e7
+
+HTTP/1.1 302 FOUND
+
+
+    <h1>THE WALL_ <small>v2</small></h1>
+        <p>Messages: 9</p>
+            <span class="author">Aterskapad</span>
+
