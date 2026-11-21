@@ -1,0 +1,10 @@
+start 22:05:42: 8 klienter i 90 s mot http://wall-web/
+klient 5: 1945 ok, 0 fel
+klient 4: 1945 ok, 0 fel
+klient 7: 1883 ok, 0 fel
+klient 2: 1918 ok, 0 fel
+klient 3: 1894 ok, 0 fel
+klient 6: 1885 ok, 0 fel
+klient 1: 1891 ok, 0 fel
+klient 8: 1903 ok, 0 fel
+slut 22:07:12

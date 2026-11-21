@@ -1,0 +1,4 @@
+start 21:46:19: 2 klienter i 60 s mot http://wall-web/
+klient 2: 3785 ok, 0 fel
+klient 1: 3873 ok, 0 fel
+slut 21:47:19

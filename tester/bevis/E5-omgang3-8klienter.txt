@@ -1,0 +1,11 @@
+start 21:58:55: 8 klienter i 120 s mot http://wall-web/
+klient 7: 1804 ok, 0 fel
+klient 2: 1746 ok, 0 fel
+klient 1: 1782 ok, 0 fel
+klient 6: 1790 ok, 0 fel
+klient 8: 1770 ok, 0 fel
+klient 5: 1778 ok, 0 fel
+klient 4: 1791 ok, 0 fel
+klient 3: 1791 ok, 0 fel
+slut 22:00:55
+OBS: omgång 3 kördes med limit 500m (ändringen till 1 CPU var inte sparad). Lastgeneratorn låg på 500m hela omgången, så resultatet bekräftar att den var begränsad. Omgång 4 görs med verifierad limit 1 CPU.

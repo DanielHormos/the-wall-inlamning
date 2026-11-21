@@ -1,0 +1,275 @@
+=== 22:58:47 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h30m
+wall-web   2/2   2     2     6h40m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 22:59:03 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h30m
+wall-web   2/2   2     2     6h40m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 22:59:19 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h30m
+wall-web   2/2   2     2     6h40m
+wall-db-f78cb7d95-sb74x     443m   21Mi   
+wall-web-746b854bd6-5djjl   328m   42Mi   
+wall-web-746b854bd6-gmp4b   371m   42Mi   
+=== 22:59:35 ===
+wall-web   Deployment/wall-web   cpu: 349%/50%   2     3     2     4h30m
+wall-web   3/3   3     3     6h41m
+wall-db-f78cb7d95-sb74x     570m   21Mi   
+wall-loadgen-nc9wz          498m   13Mi   
+wall-web-746b854bd6-5djjl   411m   42Mi   
+wall-web-746b854bd6-gmp4b   371m   42Mi   
+=== 22:59:51 ===
+wall-web   Deployment/wall-web   cpu: 324%/50%   2     3     3     4h31m
+wall-web   3/3   3     3     6h41m
+wall-db-f78cb7d95-sb74x     573m   20Mi   
+wall-loadgen-nc9wz          501m   13Mi   
+wall-web-746b854bd6-5djjl   269m   43Mi   
+wall-web-746b854bd6-gmp4b   379m   43Mi   
+=== 23:00:08 ===
+wall-web   Deployment/wall-web   cpu: 283%/50%   2     3     3     4h31m
+wall-web   3/3   3     3     6h41m
+wall-db-f78cb7d95-sb74x     570m   20Mi   
+wall-loadgen-nc9wz          500m   13Mi   
+wall-web-746b854bd6-5djjl   269m   43Mi   
+wall-web-746b854bd6-gmp4b   319m   43Mi   
+wall-web-746b854bd6-njm7n   262m   42Mi   
+=== 23:00:24 ===
+wall-web   Deployment/wall-web   cpu: 292%/50%   2     3     3     4h31m
+wall-web   3/3   3     3     6h41m
+wall-db-f78cb7d95-sb74x     572m   20Mi   
+wall-loadgen-nc9wz          500m   13Mi   
+wall-web-746b854bd6-5djjl   293m   43Mi   
+wall-web-746b854bd6-gmp4b   319m   43Mi   
+wall-web-746b854bd6-njm7n   266m   42Mi   
+=== 23:00:40 ===
+wall-web   Deployment/wall-web   cpu: 287%/50%   2     3     3     4h31m
+wall-web   3/3   3     3     6h42m
+wall-db-f78cb7d95-sb74x     575m   20Mi   
+wall-loadgen-nc9wz          500m   6Mi    
+wall-web-746b854bd6-5djjl   276m   44Mi   
+wall-web-746b854bd6-gmp4b   314m   43Mi   
+wall-web-746b854bd6-njm7n   271m   42Mi   
+=== 23:00:56 ===
+wall-web   Deployment/wall-web   cpu: 287%/50%   2     3     3     4h32m
+wall-web   3/3   3     3     6h42m
+wall-db-f78cb7d95-sb74x     568m   20Mi   
+wall-web-746b854bd6-5djjl   276m   44Mi   
+wall-web-746b854bd6-gmp4b   311m   43Mi   
+wall-web-746b854bd6-njm7n   276m   42Mi   
+=== 23:01:12 ===
+wall-web   Deployment/wall-web   cpu: 261%/50%   2     3     3     4h32m
+wall-web   3/3   3     3     6h42m
+wall-db-f78cb7d95-sb74x     575m   23Mi   
+wall-web-746b854bd6-5djjl   219m   42Mi   
+wall-web-746b854bd6-gmp4b   290m   43Mi   
+wall-web-746b854bd6-njm7n   276m   42Mi   
+=== 23:01:28 ===
+wall-web   Deployment/wall-web   cpu: 73%/50%   2     3     3     4h32m
+wall-web   3/3   3     3     6h43m
+wall-db-f78cb7d95-sb74x     80m    20Mi   
+wall-web-746b854bd6-5djjl   2m     42Mi   
+wall-web-746b854bd6-gmp4b   87m    42Mi   
+wall-web-746b854bd6-njm7n   130m   41Mi   
+=== 23:01:45 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h33m
+wall-web   3/3   3     3     6h43m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   1m    42Mi   
+wall-web-746b854bd6-njm7n   1m    41Mi   
+=== 23:02:01 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h33m
+wall-web   3/3   3     3     6h43m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-njm7n   1m    40Mi   
+=== 23:02:17 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h33m
+wall-web   3/3   3     3     6h43m
+wall-db-f78cb7d95-sb74x     5m    20Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-njm7n   1m    40Mi   
+=== 23:02:33 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h33m
+wall-web   3/3   3     3     6h44m
+wall-db-f78cb7d95-sb74x     4m    20Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-njm7n   1m    40Mi   
+=== 23:02:49 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h34m
+wall-web   3/3   3     3     6h44m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-njm7n   1m    40Mi   
+=== 23:03:05 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h34m
+wall-web   3/3   3     3     6h44m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-njm7n   1m    40Mi   
+=== 23:03:21 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h34m
+wall-web   2/2   2     2     6h44m
+wall-db-f78cb7d95-sb74x     3m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:03:38 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h34m
+wall-web   2/2   2     2     6h45m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:03:54 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h35m
+wall-web   2/2   2     2     6h45m
+wall-db-f78cb7d95-sb74x     3m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:04:10 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h35m
+wall-web   2/2   2     2     6h45m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   2m    42Mi   
+=== 23:04:26 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h35m
+wall-web   2/2   2     2     6h46m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    42Mi   
+=== 23:04:42 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h36m
+wall-web   2/2   2     2     6h46m
+wall-db-f78cb7d95-sb74x     3m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:04:58 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h36m
+wall-web   2/2   2     2     6h46m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:05:15 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h36m
+wall-web   2/2   2     2     6h46m
+wall-db-f78cb7d95-sb74x     3m    20Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:05:31 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h36m
+wall-web   2/2   2     2     6h47m
+wall-db-f78cb7d95-sb74x     3m    20Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:05:47 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     2     4h37m
+wall-web   2/2   2     2     6h47m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+=== 23:06:03 ===
+wall-web   Deployment/wall-web   cpu: 80%/50%   2     3     2     4h37m
+wall-web   3/3   3     3     6h47m
+wall-db-f78cb7d95-sb74x     429m   22Mi   
+wall-loadgen-dfztx          499m   13Mi   
+wall-web-746b854bd6-5djjl   259m   43Mi   
+wall-web-746b854bd6-gmp4b   160m   42Mi   
+wall-web-746b854bd6-t7q2z   264m   40Mi   
+=== 23:06:19 ===
+wall-web   Deployment/wall-web   cpu: 209%/50%   2     3     3     4h37m
+wall-web   3/3   3     3     6h47m
+wall-db-f78cb7d95-sb74x     769m   24Mi   
+wall-loadgen-dfztx          640m   13Mi   
+wall-web-746b854bd6-5djjl   440m   43Mi   
+wall-web-746b854bd6-gmp4b   474m   42Mi   
+wall-web-746b854bd6-t7q2z   423m   42Mi   
+=== 23:06:35 ===
+wall-web   Deployment/wall-web   cpu: 445%/50%   2     3     3     4h37m
+wall-web   3/3   3     3     6h48m
+wall-db-f78cb7d95-sb74x     865m   23Mi   
+wall-loadgen-dfztx          672m   14Mi   
+wall-web-746b854bd6-5djjl   417m   43Mi   
+wall-web-746b854bd6-gmp4b   491m   43Mi   
+wall-web-746b854bd6-t7q2z   412m   42Mi   
+=== 23:06:52 ===
+wall-web   Deployment/wall-web   cpu: 432%/50%   2     3     3     4h38m
+wall-web   3/3   3     3     6h48m
+wall-db-f78cb7d95-sb74x     864m   22Mi   
+wall-loadgen-dfztx          658m   13Mi   
+wall-web-746b854bd6-5djjl   394m   43Mi   
+wall-web-746b854bd6-gmp4b   492m   43Mi   
+wall-web-746b854bd6-t7q2z   412m   43Mi   
+=== 23:07:08 ===
+wall-web   Deployment/wall-web   cpu: 439%/50%   2     3     3     4h38m
+wall-web   3/3   3     3     6h48m
+wall-db-f78cb7d95-sb74x     846m   22Mi   
+wall-loadgen-dfztx          672m   14Mi   
+wall-web-746b854bd6-5djjl   413m   43Mi   
+wall-web-746b854bd6-gmp4b   494m   43Mi   
+wall-web-746b854bd6-t7q2z   412m   43Mi   
+=== 23:07:24 ===
+wall-web   Deployment/wall-web   cpu: 422%/50%   2     3     3     4h38m
+wall-web   3/3   3     3     6h48m
+wall-db-f78cb7d95-sb74x     853m   21Mi   
+wall-web-746b854bd6-5djjl   383m   42Mi   
+wall-web-746b854bd6-gmp4b   487m   43Mi   
+wall-web-746b854bd6-t7q2z   398m   43Mi   
+=== 23:07:40 ===
+wall-web   Deployment/wall-web   cpu: 72%/50%   2     3     3     4h39m
+wall-web   3/3   3     3     6h49m
+wall-db-f78cb7d95-sb74x     46m    20Mi   
+wall-web-746b854bd6-5djjl   2m     42Mi   
+wall-web-746b854bd6-gmp4b   96m    42Mi   
+wall-web-746b854bd6-t7q2z   118m   41Mi   
+=== 23:07:56 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h39m
+wall-web   3/3   3     3     6h49m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   1m    42Mi   
+wall-web-746b854bd6-t7q2z   1m    41Mi   
+=== 23:08:12 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h39m
+wall-web   3/3   3     3     6h49m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-t7q2z   1m    41Mi   
+=== 23:08:29 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h39m
+wall-web   3/3   3     3     6h50m
+wall-db-f78cb7d95-sb74x     5m    20Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   2m    41Mi   
+wall-web-746b854bd6-t7q2z   1m    41Mi   
+=== 23:08:45 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h40m
+wall-web   3/3   3     3     6h50m
+wall-db-f78cb7d95-sb74x     3m    20Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-t7q2z   1m    40Mi   
+=== 23:09:01 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h40m
+wall-web   3/3   3     3     6h50m
+wall-db-f78cb7d95-sb74x     4m    20Mi   
+wall-web-746b854bd6-5djjl   1m    42Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-t7q2z   1m    41Mi   
+=== 23:09:17 ===
+wall-web   Deployment/wall-web   cpu: 1%/50%   2     3     3     4h40m
+wall-web   3/3   3     3     6h50m
+wall-db-f78cb7d95-sb74x     4m    19Mi   
+wall-web-746b854bd6-5djjl   1m    41Mi   
+wall-web-746b854bd6-gmp4b   1m    41Mi   
+wall-web-746b854bd6-t7q2z   1m    41Mi   
