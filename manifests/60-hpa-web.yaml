@@ -1,0 +1,27 @@
+# Automatisk skalning av webben (krav E4).
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wall-web
+  labels:
+    app.kubernetes.io/name: wall-web
+    app.kubernetes.io/part-of: the-wall
+spec:
+  scaleTargetRef:                     # VAD ska skalas?
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wall-web
+  minReplicas: 2                      # aldrig färre än 2 (tål att en Pod försvinner)
+  maxReplicas: 3                      # aldrig fler än 3 (kvot och databasens kapacitet)
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50      # mål: 50 % av CPU-request (= 50m per Pod)
+  behavior:
+    scaleDown:
+      # Standard är 300 s. 120 s räcker för att undvika fladder
+      # och gör att 3 -> 2 syns inom en testomgång (E6).
+      stabilizationWindowSeconds: 120
