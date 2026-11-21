@@ -1,0 +1,9 @@
+
+    Image:          quay.io/lerniadevopsdanielhormos/the-wall:9.9.9-finns-inte
+      Reason:       ImagePullBackOff
+  Type     Reason          Age                   From               Message
+  Warning  Failed          90s (x5 over 4m15s)   kubelet            spec.containers{web}: Failed to pull image "quay.io/lerniadevopsdanielhormos/the-wall:9.9.9-finns-inte": unable to pull image or OCI artifact: pull image err: initializing source docker://quay.io/lerniadevopsdanielhormos/the-wall:9.9.9-finns-inte: reading manifest 9.9.9-finns-inte in quay.io/lerniadevopsdanielhormos/the-wall: manifest unknown; artifact err: image reference: get manifest from ref: create image source: reading manifest 9.9.9-finns-inte in quay.io/lerniadevopsdanielhormos/the-wall: manifest unknown
+  Warning  Failed          90s (x5 over 4m15s)   kubelet            spec.containers{web}: Error: ErrImagePull
+  Warning  Failed          17s (x15 over 4m15s)  kubelet            spec.containers{web}: Error: ImagePullBackOff
+  Normal   BackOff         2s (x16 over 4m15s)   kubelet            spec.containers{web}: Back-off pulling image "quay.io/lerniadevopsdanielhormos/the-wall:9.9.9-finns-inte"
+

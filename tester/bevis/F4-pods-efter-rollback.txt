@@ -1,0 +1,3 @@
+NAME                        READY   STATUS    RESTARTS   AGE
+wall-web-75ccd7cf84-j8h7b   1/1     Running   0          16m
+wall-web-75ccd7cf84-kzkbr   1/1     Running   0          16m

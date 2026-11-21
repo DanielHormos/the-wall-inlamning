@@ -1,0 +1,8 @@
+deployment.apps/wall-web 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+4         v2.0.0: versionsmarkör i rubriken
+5         F3: avsiktligt ogiltig image
+

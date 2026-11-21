@@ -1,0 +1,3 @@
+POD                         IMAGE                                             IMAGEID
+wall-web-75ccd7cf84-j8h7b   quay.io/lerniadevopsdanielhormos/the-wall:2.0.0   quay.io/lerniadevopsdanielhormos/the-wall@sha256:23b4c36d588f324f103be4c105eb9a59c88bdf7c24f6031164516abe5a12afbf
+wall-web-75ccd7cf84-kzkbr   quay.io/lerniadevopsdanielhormos/the-wall:2.0.0   quay.io/lerniadevopsdanielhormos/the-wall@sha256:23b4c36d588f324f103be4c105eb9a59c88bdf7c24f6031164516abe5a12afbf

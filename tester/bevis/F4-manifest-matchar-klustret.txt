@@ -1,0 +1,1 @@
+deployment.apps/wall-web unchanged

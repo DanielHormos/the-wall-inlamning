@@ -1,0 +1,2 @@
+Available=True MinimumReplicasAvailable: Deployment has minimum availability.
+Progressing=True ReplicaSetUpdated: ReplicaSet "wall-web-5d7b9fd989" is progressing.

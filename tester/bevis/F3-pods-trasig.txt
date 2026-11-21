@@ -1,0 +1,4 @@
+NAME                        READY   STATUS             RESTARTS   AGE
+wall-web-5d7b9fd989-kcxrc   0/1     ImagePullBackOff   0          5m15s
+wall-web-75ccd7cf84-j8h7b   1/1     Running            0          10m
+wall-web-75ccd7cf84-kzkbr   1/1     Running            0          10m

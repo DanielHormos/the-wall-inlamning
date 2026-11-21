@@ -17,8 +17,9 @@
 | Komponent | Image | Digest |
 |---|---|---|
 | Webb v1 | `quay.io/lerniadevopsdanielhormos/the-wall:1.0.0` | `sha256:7e25a53a4ef88a29dd2e8dab8efb4fd1919e7ec469fedab98bffd437cdfb378f` |
-| Webb v2 | *(krav F)* | |
+| Webb v2 | `quay.io/lerniadevopsdanielhormos/the-wall:2.0.0` | `sha256:23b4c36d588f324f103be4c105eb9a59c88bdf7c24f6031164516abe5a12afbf` |
 | Databas | `quay.io/kurs/postgresql:2026-10-29` | `sha256:5e1750934d4de30c9718f358e4913e98fa2024c3a86de88e972ba5d5b640d82f` |
+
 
 - **Registry:** Quay.io, publikt repository (ingen pull secret behövs)
 - **Databasversion:** PostgreSQL 16.15 (Alpine), körs som icke-root (UID 1001)
