@@ -1,0 +1,8 @@
+ id | author |               message               |         created_at         
+----+--------+-------------------------------------+----------------------------
+  1 | Daniel | Forsta meddelandet i OKD            | 2026-11-21 15:25:50.006082
+  2 | Iel    | Hoppas vi ses igen!                 | 2026-11-21 17:34:04.417156
+  3 | Dar    | Meddelande efter hoppas vi ses igen | 2026-11-21 17:36:02.899643
+  4 | Oka    | Meddelande efter DAR                | 2026-11-21 17:36:27.964081
+(4 rows)
+

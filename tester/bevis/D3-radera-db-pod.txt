@@ -1,0 +1,16 @@
+=== D3 FORE radering 2026-11-21T18:38:07 ===
+POD                       POD-UID
+wall-db-f78cb7d95-nttqn   1072781f-6ee9-4cb7-b16e-22fb24d08b8e
+PVC            PVC-UID                                VOLUME
+wall-db-data   fa406d16-6286-4501-b5e8-6fa4435204e7   pvc-fa406d16-6286-4501-b5e8-6fa4435204e7
+=== Raderar databas-Poden 2026-11-21T18:38:22 ===
+=== D3 EFTER 2026-11-21T18:38:50 ===
+POD                       POD-UID
+wall-db-f78cb7d95-sb74x   553641b5-495c-4605-b31c-3abe4394835d
+PVC            PVC-UID                                VOLUME
+wall-db-data   fa406d16-6286-4501-b5e8-6fa4435204e7   pvc-fa406d16-6286-4501-b5e8-6fa4435204e7
+ antal 
+-------
+     4
+(1 row)
+
