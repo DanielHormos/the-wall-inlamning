@@ -1,0 +1,6 @@
+﻿=== B4 FORE NetworkPolicy 2026-11-21T18:24:56 ===
+klient -> wall-web/health:
+200
+klient -> wall-db:5432:
+ANSLUTEN
+exit: 0

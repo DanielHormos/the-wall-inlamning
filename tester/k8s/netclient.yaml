@@ -1,0 +1,29 @@
+# Tillfällig testklient för NetworkPolicy (krav B4). Tas bort efter testet.
+# Andra labels än webben, så den ska INTE släppas in till databasen.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wall-netclient
+  labels:
+    app.kubernetes.io/name: wall-netclient
+    app.kubernetes.io/part-of: the-wall
+spec:
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: client
+      image: registry.access.redhat.com/ubi9/ubi-minimal   # liten image med curl och bash
+      command: ["sleep", "3600"]                            # står och väntar i en timme
+      resources:                                            # egna gränser (E3)
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          cpu: 100m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]

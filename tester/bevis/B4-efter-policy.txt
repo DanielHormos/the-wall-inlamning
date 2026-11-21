@@ -1,0 +1,8 @@
+﻿=== B4 EFTER NetworkPolicy 2026-11-21T18:26:44 ===
+klient -> wall-web/health:
+200
+klient -> wall-db:5432 (timeout 5 s):
+command terminated with exit code 124
+exit: 124
+webb -> wall-db:5432:
+ANSLUTEN

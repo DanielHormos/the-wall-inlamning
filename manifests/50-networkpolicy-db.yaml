@@ -1,0 +1,24 @@
+# Brandvägg för databasen (krav B3).
+# Väljer databasens Pods och tillåter BARA TCP 5432 från webbens Pods
+# i samma projekt. All annan inkommande trafik till databasen blockeras.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: wall-db-allow-from-web
+  labels:
+    app.kubernetes.io/name: wall-db
+    app.kubernetes.io/part-of: the-wall
+spec:
+  podSelector:                          # VILKA Pods skyddas?
+    matchLabels:
+      app.kubernetes.io/name: wall-db   # -> databasen
+  policyTypes:
+    - Ingress                           # gäller inkommande trafik
+  ingress:
+    - from:
+        - podSelector:                  # VEM får komma in?
+            matchLabels:
+              app.kubernetes.io/name: wall-web   # -> bara webbens Pods
+      ports:                            # TILL VILKEN port?
+        - protocol: TCP
+          port: 5432
