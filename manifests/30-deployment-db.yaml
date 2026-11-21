@@ -18,6 +18,11 @@ spec:
         app.kubernetes.io/name: wall-db
         app.kubernetes.io/part-of: the-wall
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      terminationGracePeriodSeconds: 60   # tid för PostgreSQL att stänga ned rent
       containers:
         - name: postgresql
           image: quay.io/kurs/postgresql:2026-10-29   # vald tagg, se README
@@ -41,16 +46,46 @@ spec:
                   key: password
           ports:
             - containerPort: 5432
-          volumeMounts:                                  # NYTT
-            - name: data                                 # NYTT: disken...
-              mountPath: /var/lib/postgresql/data        # NYTT: ...monteras här (PGDATA ligger i pgdata/ under)
-            - name: init                                 # NYTT: init-skriptet...
-              mountPath: /docker-entrypoint-initdb.d     # NYTT: ...där imagen letar efter skript
-              readOnly: true                             # NYTT: samma som :ro lokalt
-      volumes:                                           # NYTT
-        - name: data                                     # NYTT
-          persistentVolumeClaim:                         # NYTT
-            claimName: wall-db-data                      # NYTT: din PVC
-        - name: init                                     # NYTT
-          configMap:                                     # NYTT
-            name: wall-db-init                           # NYTT: din ConfigMap med skriptet
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          # pg_isready kräver inget lösenord: proberna påverkas inte av lösenordsbyte (C4)
+          startupProbe:                     # initdb + init-skript klart, servern lyssnar
+            exec:
+              command: ["pg_isready", "-h", "127.0.0.1", "-p", "5432"]
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 60            # upp till 300 s
+          readinessProbe:                   # tar emot anslutningar just nu
+            exec:
+              command: ["pg_isready", "-h", "127.0.0.1", "-p", "5432"]
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:                    # servern hänger inte (försiktig: omstart påverkar alla)
+            exec:
+              command: ["pg_isready", "-h", "127.0.0.1", "-p", "5432"]
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 6
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data       # PGDATA ligger i pgdata/ under
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d    # där imagen letar efter init-skript
+              readOnly: true
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: wall-db-data
+        - name: init
+          configMap:
+            name: wall-db-init

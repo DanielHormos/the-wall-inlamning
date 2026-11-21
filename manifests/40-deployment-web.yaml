@@ -16,6 +16,10 @@ spec:
         app.kubernetes.io/name: wall-web
         app.kubernetes.io/part-of: the-wall
     spec:
+      securityContext:
+        runAsNonRoot: true              # vägra starta om containern skulle köra som root
+        seccompProfile:
+          type: RuntimeDefault          # begränsa anrop till Linux-kärnan
       containers:
         - name: web
           image: quay.io/lerniadevopsdanielhormos/the-wall:1.0.0
@@ -49,6 +53,19 @@ spec:
                   key: password
           ports:
             - containerPort: 8080
+          # Startvärden, justeras efter observationer i lasttestet (E3).
+          # HPA-målet 50 % av request = 50m CPU per Pod.
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false   # processen kan aldrig få mer behörighet
+            capabilities:
+              drop: ["ALL"]                   # inga Linux-specialrättigheter
           # Startup: initialize() kan ta upp till 30 × (3 s + 2 s) = 150 s.
           # 5 s × 40 = 200 s ger marginal för det och för Gunicorns start.
           startupProbe:
