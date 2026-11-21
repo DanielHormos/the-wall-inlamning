@@ -1,0 +1,76 @@
+=== G1 FORE 2026-11-21T21:28:31 ===
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-75ccd7cf84-j8h7b   true    0
+wall-web-75ccd7cf84-kzkbr   true    0
+NAME       ENDPOINTS                           AGE
+wall-db    10.131.0.44:5432                    5h25m
+wall-web   10.131.0.46:8080,10.131.0.47:8080   4h45m
+=== G1 FEL INFORS 2026-11-21T21:28:58: selector -> wall-db-FEL ===
+Route: 503
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-75ccd7cf84-j8h7b   false   0
+wall-web-75ccd7cf84-kzkbr   false   0
+NAME       ENDPOINTS   AGE
+wall-db    <none>      5h28m
+wall-web               4h48m
+--- port-forward direkt till webb-Pod ---
+{"pod":"wall-web-75ccd7cf84-j8h7b","status":"ok"}
+ -> /health 200
+Database unavailable. Check application logs. -> / 503
+	This probably means the server terminated abnormally
+	before or while processing the request.
+[2026-11-21 20:39:44,328] ERROR in app: Database connection failed
+Traceback (most recent call last):
+  File "/opt/app-root/src/app.py", line 134, in index
+    with connect() as conn:
+         ^^^^^^^^^
+  File "/opt/app-root/src/app.py", line 115, in connect
+    return psycopg.connect(**DB_CONFIG)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/lib64/python3.12/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "172.30.187.1", port 5432 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+    Liveness:   http-get http://:8080/health delay=0s timeout=3s period=10s #success=1 #failure=3
+  Warning  Unhealthy       35s (x66 over 10m)  kubelet            spec.containers{web}: Readiness probe failed: HTTP probe failed with statuscode: 503
+
+selector: {"app.kubernetes.io/name":"wall-db-FEL"}
+NAME                        READY   STATUS    RESTARTS   AGE    LABELS
+wall-db-f78cb7d95-sb74x     1/1     Running   0          3h1m   app.kubernetes.io/name=wall-db,app.kubernetes.io/part-of=the-wall,pod-template-hash=f78cb7d95,topology.kubernetes.io/region=eu-north-1,topology.kubernetes.io/zone=eu-north-1a
+wall-web-75ccd7cf84-j8h7b   0/1     Running   0          135m   app.kubernetes.io/name=wall-web,app.kubernetes.io/part-of=the-wall,pod-template-hash=75ccd7cf84,topology.kubernetes.io/region=eu-north-1,topology.kubernetes.io/zone=eu-north-1a
+wall-web-75ccd7cf84-kzkbr   0/1     Running   0          135m   app.kubernetes.io/name=wall-web,app.kubernetes.io/part-of=the-wall,pod-template-hash=75ccd7cf84,topology.kubernetes.io/region=eu-north-1,topology.kubernetes.io/zone=eu-north-1a
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-75ccd7cf84-j8h7b   false   0
+wall-web-75ccd7cf84-kzkbr   false   0
+--- port-forward direkt till webb-Pod wall-web-75ccd7cf84-j8h7b ---
+{"pod":"wall-web-75ccd7cf84-j8h7b","status":"ok"}
+ -> /health 200
+Database unavailable. Check application logs. -> / 503
+  File "/opt/app-root/src/app.py", line 115, in connect
+    return psycopg.connect(**DB_CONFIG)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/lib64/python3.12/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "172.30.187.1", port 5432 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+=== G1 ATGARD 2026-11-21T21:43:54: oc apply -f manifests/31-service-db.yaml ===
+=== G1 VERIFIERING 2026-11-21T21:45:07 ===
+NAME       ENDPOINTS                           AGE
+wall-db    10.131.0.44:5432                    5h41m
+wall-web   10.131.0.46:8080,10.131.0.47:8080   5h2m
+POD                         READY   RESTARTS
+wall-db-f78cb7d95-sb74x     true    0
+wall-web-75ccd7cf84-j8h7b   true    0
+wall-web-75ccd7cf84-kzkbr   true    0
+
+HTTP/1.1 302 FOUND
+
+
+        <p>Messages: 6</p>
+            <span class="author">Incident1</span>
