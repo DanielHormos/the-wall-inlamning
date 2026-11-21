@@ -7,22 +7,21 @@
 | Namn | Daniel Hormos |
 | Kluster | OKD 4.22 (härlett från Kubernetes 1.35), `https://api.okd.cloud2.se:6443` |
 | Projekt | `student-daniel-hormos-lerniastudent-se` |
-| Route-adress | *(fylls i efter driftsättning)* |
+| Route-adress | https://wall-web-student-daniel-hormos-lerniastudent-se.apps.okd.cloud2.se |
 | Upstream | https://github.com/jonasbjork/the-wall |
 | Upstream-commit | `caa199b60b0218675bc2156f0dff00131d464512` |
-| Route-adress | https://wall-web-student-daniel-hormos-lerniastudent-se.apps.okd.cloud2.se |
 
 ## Images
 
 | Komponent | Image | Digest |
 |---|---|---|
 | Webb v1 | `quay.io/lerniadevopsdanielhormos/the-wall:1.0.0` | `sha256:7e25a53a4ef88a29dd2e8dab8efb4fd1919e7ec469fedab98bffd437cdfb378f` |
-| Webb v2 | `quay.io/lerniadevopsdanielhormos/the-wall:2.0.0` | `sha256:23b4c36d588f324f103be4c105eb9a59c88bdf7c24f6031164516abe5a12afbf` |
+| Webb v2 (i drift) | `quay.io/lerniadevopsdanielhormos/the-wall:2.0.0` | `sha256:23b4c36d588f324f103be4c105eb9a59c88bdf7c24f6031164516abe5a12afbf` |
 | Databas | `quay.io/kurs/postgresql:2026-10-29` | `sha256:5e1750934d4de30c9718f358e4913e98fa2024c3a86de88e972ba5d5b640d82f` |
 
 
 - **Registry:** Quay.io, publikt repository (ingen pull secret behövs)
-- **Databasversion:** PostgreSQL 16.15 (Alpine), körs som icke-root (UID 1001)
+- **Databasversion:** PostgreSQL 16.15 (Alpine). Imagen kör som UID 1001; i OKD tilldelas istället UID ur projektets intervall (observerat 1001090000).
 - **Basimage webb:** `registry.access.redhat.com/ubi9/python-312`
   (vid bygget löst till `sha256:5b184c2acfe9e2eb9df1a243da8e4a82fedd96e5e7f6648ec5512656177fa326`)
 
@@ -34,7 +33,7 @@
 - `db/init/01-create-app-user.sh` – skapar applikationskontot `walluser` utan
   superuser-rättigheter, som ägare av databasen `walldb`
 - `.gitattributes` – LF-radslut för skript, kod och konfiguration
-- `app/app.py` – *(v2-ändringen, krav F)*
+- `app/app.py` – v2: versionsmarkör i rubriken (`<h1>THE WALL_ <small>v2</small></h1>`), se `git diff v1.0.0 v2.0.0 -- app/app.py`
 
 ## Beroenden
 
@@ -58,12 +57,14 @@ Werkzeug==3.1.9
 ```
 
 Python i imagen: Python 3.12.15
+v2 har samma beroenden: endast `app.py` ändrades, och lagret med `pip install` återanvändes från byggcachen.
 
 ## Verktyg som använts
 
 - Docker 29.9.3 (Docker Desktop, WSL2) på Windows
 - oc 4.22.0
 - Git 2.46
+- PowerShell 7.7 (Windows PowerShell 5.1 byttes ut p.g.a. teckenkodningsproblem, se beslutsloggen)
 
 ## Mappstruktur
 
@@ -85,12 +86,14 @@ init-skript. Det läggs in i klustret som ConfigMap `wall-db-init`
 Förutsättningar: Docker eller Podman, inloggad i registryt (`docker login quay.io`).
 
 ```sh
-docker build -t quay.io/lerniadevopsdanielhormos/the-wall:1.0.0 -f app/Containerfile app
-docker push quay.io/lerniadevopsdanielhormos/the-wall:1.0.0
+git checkout v2.0.0        # v1: git checkout v1.0.0 och tagg 1.0.0
+docker build -t quay.io/lerniadevopsdanielhormos/the-wall:2.0.0 -f app/Containerfile app
+docker push quay.io/lerniadevopsdanielhormos/the-wall:2.0.0
+git checkout main
 ```
 
 - Byggkontext: mappen `app/`
-- Imagen körs som UID 1001 och startar `start.sh`
+- Imagen kör som UID 1001 (grupp 0) och startar `start.sh`. I OKD kör containern som tilldelat UID (observerat 1001090000), vilket fungerar eftersom filerna ägs av grupp 0.
 
 ## Databasuppgifter (Secrets)
 
@@ -133,13 +136,30 @@ Att ändra en Secret i efterhand byter inte lösenordet i databasen – se runbo
 
 ## Installera i klustret
 
+1. Skapa Secrets enligt avsnittet *Databasuppgifter* ovan.
+2. Applicera alla manifest:
+
 ```sh
 oc project "$LAB_PROJECT"
 oc apply -f manifests/
+oc rollout status deployment/wall-db
+oc rollout status deployment/wall-web
 ```
 
-*(kompletteras när alla manifest är klara)*
+Fullständig driftinstruktion (bygge, installation, lösenordsbyte, felsökning, rollback,
+återstart med bevarad volym, test med tom PVC): [`drift/runbook.md`](drift/runbook.md).
 
 ## Verifiera
 
-*(fylls i)*
+Snabbkontroll: runbookens avsnitt 3. Alla tester (V1–V10) med kommandon, förväntat och
+faktiskt resultat samt bevisfiler: [`tester/verifieringsprotokoll.md`](tester/verifieringsprotokoll.md).
+
+## Dokumentation
+
+| Dokument | Innehåll |
+|---|---|
+| [`drift/runbook.md`](drift/runbook.md) | Driftinstruktioner |
+| [`drift/incidentlogg.md`](drift/incidentlogg.md) | Incident 1 och 2 (och incidentpasset) |
+| [`tester/verifieringsprotokoll.md`](tester/verifieringsprotokoll.md) | V1–V10 |
+| `tester/bevis/` | Textutskrifter och skärmbilder |
+| `rapport/projektrapport.pdf` | Projektrapporten |
