@@ -1,0 +1,4 @@
+Incidentpass med Jonas Björk, 2026-11-26 ca 15:00–15:11
+Fel 1: webbens image ändrad till the-wallz:2.0.0 (ImagePullBackOff)
+Fel 2: wall-web-config DB_PORT ändrad till 54322 (latent, upptäckt via dry-run)
+

@@ -25,8 +25,8 @@ pekat på `/` skulle webben ha startats om upprepade gånger (CrashLoopBackOff) 
 
 | Fält | Innehåll |
 |---|---|
-| **Start** | *(tid för G2 FEL INFORS)* – ConfigMap `DB_NAME` → `finnsinte` |
-| **Slut** | *(tid för G2 VERIFIERING)* |
+| **Start** | 2026-11-21 21:52:36 – ConfigMap `DB_NAME` → `finnsinte` |
+| **Slut** | 2026-11-21 22:22:28 |
 | **Symptom** | Direkt efter ConfigMap-ändringen: inga. Route 200, körande processer hade fortfarande `DB_NAME=walldb`. Efter `rollout restart`: ny Pod `0/1` → `Error` efter ~62 s → `CrashLoopBackOff`, RESTARTS 1→9. Gamla Pods kvar `1/1`, Route fortsatt 200. Utrullningen fastnade. |
 | **Hypoteser** | 1) Servicen/nätverket (som incident 1) – avfärdad: endpoints för wall-db fanns, gamla Pods når databasen. 2) Databasen nere – avfärdad: wall-db ready, gamla Pods fungerar. 3) Felaktig konfiguration i den nya Poden – **bekräftad**. |
 | **Bevis** | `oc logs --previous`: `RuntimeError: Database could not be initialized`, `Exit Code: 1`. Events: `Startup probe failed … connect: connection refused` (Gunicorn startade aldrig), `Back-off restarting failed container`. ConfigMap `finnsinte` men gamla processer `walldb`. Se `tester/bevis/G2-incident2.txt`. |
@@ -52,3 +52,18 @@ pekat på `/` skulle webben ha startats om upprepade gånger (CrashLoopBackOff) 
 `initialize()` innan `exec gunicorn`. Ändringen i ConfigMapen fick ingen effekt förrän
 processerna startades om (miljövariabler läses vid containerstart och vid import i `app.py`),
 vilket visar varför en omstart krävs vid konfigurationsändring (C1).
+
+## Incidentpass med Jonas – 2026-11-26
+
+| Fält | Innehåll |
+|---|---|
+| **Start** | ca 15:00 |
+| **Slut** | 15:11 (verifierat: 200, alla Pods 1/1, dry-run allt unchanged) |
+| **Symptom** | Sidan svarade 200, men en ny webb-Pod stod i `ImagePullBackOff` (0/1) medan två gamla körde. Utrullningen hade fastnat. |
+| **Ledtrådar** | `koll`: ny ReplicaSet-kod (79fff57c85) med ImagePullBackOff. Dry-run: **två** objekt `configured` – `deployment.apps/wall-web` och `configmap/wall-web-config`. |
+| **Hypoteser** | 1) Felaktig image i webbens Deployment (som F3) – bekräftad. 2) Dry-run visade även ändrad ConfigMap – ett andra, dolt fel som ännu inte påverkade körande Pods. |
+| **Bevis** | `oc describe deployment wall-web`: `Image: quay.io/lerniadevopsdanielhormos/the-wallz:2.0.0` (stavfel, "wallz"). `oc describe configmap wall-web-config`: `DB_PORT: 54322` (ska vara 5432). Se `tester/bevis/incidentpass-jonas.txt`. |
+| **Orsak** | Två manuella ändringar: (1) ogiltig image → ny Pod kunde inte hämta imagen; RollingUpdate med maxUnavailable 0 behöll de gamla Poderna, så tjänsten var uppe. (2) fel DB_PORT i ConfigMap → påverkade inte körande processer (miljövariabler läses vid start), men hade gett `connection refused` och CrashLoopBackOff vid nästa omstart. |
+| **Åtgärd** | `oc apply -f manifests/40-deployment-web.yaml` och `oc apply -f manifests/10-configmap-web.yaml` – återställde båda från Git. |
+| **Verifiering** | `koll`: sidan 200, två webb-Pods 1/1, endpoints korrekta, dry-run allt `unchanged`. |
+| **Lärdom/förebyggande** | Läs **hela** dry-run-utskriften – fel nr 2 syntes inte för användaren och hade slagit till först vid nästa omstart. Förebyggande: GitOps (automatisk synk från Git) eller regelbunden dry-run/drift-kontroll som larmar vid avvikelse. |
